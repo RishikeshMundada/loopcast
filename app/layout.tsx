@@ -1,13 +1,21 @@
 import type { Metadata } from 'next';
-import { Syne, Inter, Space_Mono } from 'next/font/google';
+import { Playfair_Display, Epilogue, IBM_Plex_Mono } from 'next/font/google';
 import './globals.css';
 
-const syne = Syne({ subsets: ['latin'], variable: '--font-syne' });
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const spaceMono = Space_Mono({
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-space-mono',
+  variable: '--font-playfair',
+  weight: ['400', '700', '900'],
+});
+const epilogue = Epilogue({
+  subsets: ['latin'],
+  variable: '--font-epilogue',
+  weight: ['300', '400', '500', '600', '700'],
+});
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-ibm-mono',
 });
 
 export const metadata: Metadata = {
@@ -17,8 +25,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${inter.variable} ${spaceMono.variable}`}>
-      <body className="bg-[var(--bg-base)] text-[var(--text-primary)] font-body antialiased">
+    <html lang="en" className={`${playfair.variable} ${epilogue.variable} ${ibmPlexMono.variable}`}>
+      <body className="bg-[var(--paper)] text-[var(--ink)] font-body antialiased">
         {children}
       </body>
     </html>
