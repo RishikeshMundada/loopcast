@@ -14,9 +14,9 @@ const config: Config = {
         elevated: 'var(--bg-elevated)',
       },
       fontFamily: {
-        heading: ['Syne', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        mono: ['Space Mono', 'monospace'],
+        heading: ['var(--font-playfair)', 'Georgia', 'serif'],
+        body: ['var(--font-epilogue)', 'sans-serif'],
+        mono: ['var(--font-ibm-mono)', 'monospace'],
       },
     },
   },

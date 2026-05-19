@@ -53,45 +53,53 @@ export default function Dropzone({
         {...getRootProps()}
         className={`
           relative rounded-lg border-2 border-dashed p-8 text-center transition-all duration-200
-          cursor-pointer
-          ${disabled ? 'opacity-40 pointer-events-none' : ''}
+          cursor-pointer bg-[var(--white)]
+          ${disabled ? 'pointer-events-none opacity-40' : ''}
           ${file
-            ? 'border-[var(--success)] bg-[var(--bg-elevated)]'
+            ? 'border-[var(--sage)] bg-[var(--sage-lt)]'
             : isDragActive
-              ? 'border-[var(--border-active)] bg-[var(--bg-elevated)]'
-              : 'border-[var(--border-subtle)] hover:border-[var(--border-default)]'
+              ? 'border-[var(--rust)] bg-[var(--rust-lt)]'
+              : 'border-[var(--border2)] hover:border-[var(--rust)] hover:bg-[var(--rust-lt)]'
           }
         `}
       >
         <input {...getInputProps()} />
-        <div className="flex flex-col items-center gap-3">
-          <div className={`text-[var(--text-secondary)] ${file ? 'text-[var(--success)]' : ''}`}>
+
+        {/* Panel label */}
+        <div className="absolute left-4 top-3">
+          <span className="font-mono text-[10px] tracking-widest text-[var(--muted)] uppercase">
+            {label}
+          </span>
+        </div>
+
+        <div className="flex flex-col items-center gap-3 pt-4">
+          <div className={file ? 'text-[var(--sage)]' : 'text-[var(--muted)]'}>
             {icon}
           </div>
+
           {file ? (
             <div>
-              <p className="font-mono text-sm text-[var(--text-primary)] break-all">
-                {file.name}
-              </p>
-              <p className="mt-1 text-xs text-[var(--text-secondary)]">
-                {formatFileSize(file.size)}
-              </p>
+              <p className="font-mono text-sm text-[var(--ink)] break-all">{file.name}</p>
+              <p className="mt-1 font-mono text-xs text-[var(--muted)]">{formatFileSize(file.size)}</p>
             </div>
           ) : (
             <div>
-              <p className="font-heading text-sm font-medium text-[var(--text-primary)]">
-                {label}
-              </p>
-              <p className="mt-1 text-xs text-[var(--text-muted)]">
+              <p className="font-body text-sm font-medium text-[var(--ink2)]">
                 Drop file here or click to browse
+              </p>
+              <p className="mt-1 font-mono text-xs text-[var(--muted)]">
+                {label === 'Video'
+                  ? '.mp4 · .mov · .webm · .avi'
+                  : '.mp3 · .wav · .m4a · .ogg'}
               </p>
             </div>
           )}
         </div>
       </div>
+
       {showLargeWarning && (
-        <p className="mt-2 text-xs text-[var(--text-muted)]" role="alert">
-          Large files may cause processing to slow down or fail depending on your browser and available RAM.
+        <p className="mt-2 font-mono text-xs text-[var(--muted)]" role="alert">
+          Large files may slow down or fail depending on your browser and available RAM.
         </p>
       )}
     </div>
